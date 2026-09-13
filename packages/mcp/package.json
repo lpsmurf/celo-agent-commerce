@@ -2,16 +2,49 @@
   "name": "celo-commerce-mcp",
   "version": "0.1.0",
   "description": "MCP server for Celo Agent Commerce \u2014 browse and buy mobile airtime, data, gift cards and eSIMs, paid over x402 on Celo",
-  "private": true,
   "type": "module",
   "bin": {
     "celo-commerce-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "server.json",
+    "smithery.yaml",
+    "README.md",
+    "PUBLISHING.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "x402",
+    "celo",
+    "stablecoin",
+    "usdc",
+    "usdt",
+    "gift-cards",
+    "airtime",
+    "esim",
+    "agent-commerce"
+  ],
+  "homepage": "https://store.hfsp.cloud",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpsmurf/celo-agent-commerce.git",
+    "directory": "packages/mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/lpsmurf/celo-agent-commerce/issues"
   },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "license": "MIT",
   "devDependencies": {
