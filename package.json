@@ -1,0 +1,20 @@
+{
+  "name": "celo-agent-commerce",
+  "version": "0.1.0",
+  "private": true,
+  "description": "x402 payment rails on Celo for mobile airtime, data, gift cards and eSIMs — for agents and MiniPay-style wallets",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "workspaces": [
+    "packages/x402-common",
+    "packages/store",
+    "packages/mcp"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "repository": { "type": "git", "url": "https://github.com/lpsmurf/celo-agent-commerce.git" }
+}

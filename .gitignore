@@ -1,6 +1,7 @@
 node_modules/
 dist/
 dist-test/
+*.tsbuildinfo
 .env
 .env.*
 !.env.example
@@ -8,4 +9,5 @@ dist-test/
 *.key
 celo-wallets.env
 celo-faucet.env
+celo-builders.env
 .DS_Store
