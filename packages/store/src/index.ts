@@ -52,6 +52,10 @@ if (celoEnabled) {
   app.use("/api/celo/checkout", celoCheckoutRouter);
   // Browser checkout for wallets that cannot sign x402 (MiniPay, Valora…).
   app.use("/checkout", express.static(new URL("../public/checkout", import.meta.url).pathname));
+  // Public campaign landing page (claim free USA₮ → top up), multi-language.
+  app.use("/free", express.static(new URL("../public/free", import.meta.url).pathname));
+  // The bare domain is what gets shared; land people on the page, not a JSON 404.
+  app.get("/", (_req, res) => { res.redirect(302, "/free/"); });
 }
 
 app.use((err: any, _req: any, res: any, _next: any) => {

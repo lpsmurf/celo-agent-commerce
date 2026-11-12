@@ -187,11 +187,19 @@ const celoPaths = {
 const spec = {
   openapi: "3.1.0",
   info: {
-    title:       "HFSP Store x402 (Solana)",
+    title:       celoEnabled ? "Celo Agent Commerce x402 (Celo + Solana)" : "HFSP Store x402 (Solana)",
     version:     "1.0.0",
     description: [
-      "Gift cards, mobile top-ups, and eSIMs for AI agents. 10,500+ brands, 180+ countries.",
-      "Powered by Cryptorefills. Pay USDC on Solana mainnet via x402 v2. No account, no API key.",
+      "Mobile airtime, data bundles, gift cards and eSIMs for AI agents, bots and apps. 10,500+ brands, 180+ countries.",
+      "Powered by Cryptorefills. No account, no API key.",
+      ...(celoEnabled ? [
+        "Celo (primary): POST /api/celo/orders?asset=USDT|USAT|USDC → 402 with PAYMENT-REQUIRED;",
+        "sign the exact-scheme stablecoin payment and retry with PAYMENT-SIGNATURE → 202 with orderId;",
+        "poll GET /api/celo/orders/{orderId} until delivered. No CELO needed for gas.",
+        "Wallets that cannot sign x402 (MiniPay, Valora) use /api/celo/checkout. Integrators earn revenue share via X-Integrator (ERC-8004 id).",
+        "Solana (secondary):",
+      ] : []),
+      "Pay USDC on Solana mainnet via x402 v2.",
       `Commission: ${(env.COMMISSION_RATE * 100).toFixed(1)}% added to Cryptorefills catalog price.`,
       "Flow: 1) GET /api/brands or /api/catalog to discover products.",
       "2) POST /api/orders → 402 with pay.amount and pay.payTo.",
